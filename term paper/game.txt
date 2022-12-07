@@ -1,0 +1,115 @@
+#include <iostream>       
+#include <stack>   
+
+using namespace std;
+
+
+int main() {
+        int score = 0;
+        int total = 4;
+        string decide = "";
+
+        stack<string> stack;
+
+        cout<<"You are in a forest, you do not know how you got there...\n";
+        cout<<"You hear a loud scream behind you\n";
+        cout<<"Do you run, or hide?        \n";
+
+        cin >> decide;
+        
+        if (decide.find("run") != std::string::npos){
+            stack.push("run");
+            score = score +1;
+            
+            cout<<"You run and run as fast as you can hearing footsteps behind you\n";
+            cout<<"After a while of running the footsteps fade, you are alone\n";
+            cout<<"When you catch your breath you see a small hut in the distance\n";
+            cout<<"Do you go towards the hut or keep going straight?       \n";
+
+            cin >> decide;
+           
+            if (decide.find("hut") != std::string::npos){
+                stack.push("hut");
+                score = score + 1;
+                
+                cout<<"you walk up to the hut, knock on the door....\n";
+                cout<<"no answer\n";
+                cout<<"You push the door and by your luck it is unlocked\n";
+                cout<<"Do you explore the main floor or the basement?  \n";
+
+                cin >> decide;
+                if (decide.find("basement") != std::string::npos){
+                    stack.push("basement");
+                    score = score + 2;
+                    
+
+                    cout<<"You walk to the basement doors no where near the kitchen\n";
+                    cout<<"You open the door and try to turn on the light but it does not work\n";
+                    cout<<"You slowly go down the large staircase\n";
+                    cout<<"You feel the walls trying to get a grasp of where you are\n";
+                    cout<<"Suddenly a small blue light emerges...\n";
+                    cout<<"You go towards the light and when you reach into it you find...\n";
+                    cout<<"A magic 8 ball!\n";
+
+                    stack.push("8-ball winner");
+                    cout<<"Congratulations\n";
+
+                }
+                if (decide.find("main") != std::string::npos){
+                    stack.push("main floor");
+                    score = score + 1;
+                    cout<<"You're walking around carefully making sure no one is in the hut\n";
+                    cout<<"You explore the living room\n";
+                    cout<<"Nothing but dusty photos of weird looking children in there\n";
+                    cout<<"You start heading to the kitchen when...\n";
+                    cout<<"BOOM. Floor falls out from beneath you\n";
+
+                    stack.push("dead");
+
+                }
+
+
+            }
+            if (decide.find("straight") != std::string::npos){
+                stack.push("straight");
+                score = score + 1;
+
+                cout<<"You keep running past the hut hoping to find some end to this madness\n";
+                cout<<"You look behind you to see if anyone is following\n";
+                cout<<"While your head is turned you run into a tree\n";
+                stack.push("dead");
+
+
+            }
+            else{
+                stack.push("invalid");
+            }
+            
+         
+        }
+
+        else if (decide.find("hide") != std::string::npos){
+            stack.push("hide");
+            score = score + 1;
+            cout<<"You hide for a while...\n";
+            cout<<"You havent heard anything for a long time now...\n";
+            cout<<"You come out of hiding to see if the coast is clear\n";
+            cout<<"You get shot in the head with an arrow\n";
+            stack.push("dead");
+            
+
+        }
+
+        else{
+            stack.push("invalid");
+        }
+
+        cout<<"Here are the choices you made:\n";
+        while(!stack.empty()) {
+    	cout << stack.top() << " \n";
+    	stack.pop();
+            }
+        cout<<"Your score is "<< score << "/" << total ;
+        
+        
+    }

@@ -1,0 +1,19 @@
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <math.h>
+
+using namespace std;
+
+
+int main()
+{
+    int result;
+        cout << "Enter a weight in lbs and we will convert it!    ";
+        cin >> result;
+        cout << "The weight in grams is:    " << (result*453.592);
+        cout << "The weight in kilograms is:    " << (result*0.000453592);
+        cout << "The weight in ounces is:   " << (result*16);
+        return 0;
+}

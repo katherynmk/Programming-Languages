@@ -1,0 +1,120 @@
+#include <iostream>
+#include <stdlib.h>
+#include <string>
+
+// Use Dev C++ compiler
+// Could use also shellC++ environment
+
+using namespace std;
+
+
+
+bool A3_number(string input_string);
+
+int main (void){
+    
+    cout << "\n--------------------------------------------------\n";
+    string input_str = "11";
+    cout << "\ninput_str, same as the A1 Tape: " << input_str << endl; 
+    bool ret_val = A3_number(input_str);
+    cout << "\n Return value: " << ret_val << " input_str is: " << input_str << endl;
+
+    cout << "\n--------------------------------------------------\n";
+    input_str = "1010";
+    cout << "\ninput_str, same as the A1 Tape: " << input_str << endl;
+    ret_val = A3_number(input_str);
+    cout << "\n Return value: " << ret_val << " input_str is: " << input_str << endl;    
+    
+    cout << "\n--------------------------------------------------\n";
+    input_str = "00";
+    cout << "\ninput_str, same as the A1 Tape: " << input_str << endl;
+    //ret_val = A1_number(input_str);
+    cout << "\n Return value: " << ret_val << " input_str is: " << input_str << endl;
+    
+    
+    cout << "\n--------------------------------------------------\n";
+    input_str = "0101";
+    cout << "\ninput_str, same as the A1 Tape: " << input_str << endl;
+    ret_val = A3_number(input_str);
+    cout << "\n Return value: " << ret_val << " input_str is: " << input_str << endl;
+    
+    
+    cout << "\n--------------------------------------------------\n";
+    input_str = "0000";
+    cout << "\ninput_str, same as the A1 Tape: " << input_str << endl;
+    ret_val = A3_number(input_str);
+    cout << "\n Return value: " << ret_val << " input_str is: " << input_str << endl;
+    
+    cout << "\n--------------------------------------------------\n";
+    input_str = "111";
+    cout << "\ninput_str, same as the A1 Tape: " << input_str << endl;
+    ret_val = A3_number(input_str);
+    cout << "\n Return value: " <<  ret_val  << " input_str is: " << input_str << endl;
+    
+    system ("PAUSE");
+    return 0;
+}
+
+
+// A1_number is the A1 automaton (in our Finite State Automaton A1, presentation.
+// Return the true if string is accepted.
+
+
+bool A3_number(string input_string)
+{
+    // Use Automaton A1 in the class examples
+    // States: q0, q1; q0 is start state
+    // Input alphabet, symbols: 0, 1,.....8, 9, +
+    // Final States: q0 (g0od), q1 (bad)
+
+    // Mapping Function:
+    // returns a state, first parameter is present state and the char on the tape.
+    string A3_map(string state, char symbol);
+    
+    // Automaton Tape: is input_string
+    
+    string state = "q0";
+    string final_state = "q0";    
+    
+    for (int i=0; i < input_string.length(); i++)
+    {
+        cout << input_string[i];
+        if (( input_string.length() == 3 ))
+        
+        return false;
+        break;
+        // use A1_map() to calculate the next state
+        state = A3_map(state, input_string[i]);
+        if ((state == ""))
+            break; //gets out of the loop
+    }
+    if (state == final_state)
+            return true;
+    else
+            return false;
+}
+string A3_map(string state, char symbol)
+{
+    if (state == "q0" && symbol == '0')
+        return "q0";
+    else if (state == "q0" && symbol == '1')
+        return "q1";
+    else if (state == "q1" && symbol == '0')
+        return "q3";
+    else if (state == "q3" && symbol == '1')
+        return "q2";
+    else if (state == "q2" && symbol == '0')
+        return "q0";
+    else if (state == "q0" && symbol == '0')
+        return "q2";
+    else if (state == "q2" && symbol == '1')
+        return "q3";
+    else if (state == "q3" && symbol == '0')
+        return "q1";
+    else if (state == "q1" && symbol == '1')
+        return "q0";
+
+    else
+        return "";  // case where there are other chars than the
+                    // symbols of the alphabet.    
+}
